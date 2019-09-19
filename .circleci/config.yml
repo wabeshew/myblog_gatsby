@@ -12,9 +12,12 @@ jobs:
           # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: install-npm-wee
+          name: install-npm
           command: npm install
       - save_cache: # 依存関係キャッシュを保存する特別なステップ
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
           - ./node_modules
+      - run:
+          name: build
+          command: npm run build
