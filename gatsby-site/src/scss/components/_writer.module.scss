@@ -1,0 +1,44 @@
+// writer
+.writer {
+	.writer-object {
+		text-align: center;
+		.writer-object-img {
+			border-radius: 50%;
+		}
+	}
+	.writer-body {
+		margin-top: 10px;
+		.writer-body-title {
+			color: #999;
+			line-height: 1;
+		}
+		.writer-body-name {
+			margin-top: 5px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.writer-body-text {
+			margin-top: 5px;
+			line-height: 1.6;
+			font-size: 14px;
+		}
+	}
+}
+@media screen and (min-width: 480px) {
+	.writer {
+		display: flex;
+		.writer-object {
+			flex-shrink: 0;
+		}
+		.writer-body {
+			margin-top: 0;
+			padding-left: 20px;
+			.writer-body-name {
+				font-size: 18px;
+			}
+			.writer-body-text {
+				font-size: 16px;
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+@import '../common/_settings.scss';
+
+// label
+.label {
+	display: inline-block;
+	padding: 3px 8px;
+	background-color: $base-theme-color;
+	border-radius: 3px;
+	font-size: 14px;
+	&:link,
+	&:hover,
+	&:active,
+	&:visited {
+		text-decoration: none;
+		color: #fff;
+	}
+	&:hover {
+		opacity: .8;
+		filter: alpha(opacity=80);
+	}
+}

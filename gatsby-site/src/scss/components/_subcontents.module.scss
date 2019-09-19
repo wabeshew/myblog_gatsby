@@ -1,0 +1,16 @@
+@import '../common/_settings.scss';
+@import '../common/_layout.scss';
+
+// sub_contents
+.sub_contents {
+	.sub_contents-header {
+		font-size: 22px;
+		padding-left: 8px;
+		border-left: 5px solid $base-theme-color;
+		line-height: 1;
+		font-weight: normal;
+	}
+	.sub_contents-body {
+		margin-top: 30px;
+	}
+}

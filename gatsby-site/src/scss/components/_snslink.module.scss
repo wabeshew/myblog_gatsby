@@ -1,0 +1,57 @@
+@import '../common/_settings.scss';
+@import '../common/_layout.scss';
+@import '../common/_genericons.scss';
+
+// snslink
+.snslink {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	padding: 9px;
+	box-sizing: border-box;
+	transition: color 0.3s ease-out, background-color 0.3s ease-out;
+	&:link,
+	&:hover,
+	&:active,
+	&:visited {
+		text-decoration: none;
+		color: #fff;
+	}
+	&.snslink--twitter {
+		background-color: #55acee;
+		border: solid 1px #55acee;
+		&:hover {
+			color: #55acee;
+			background-color: #fff;
+		}
+	}
+	&.snslink--facebook {
+		background-color: #315096;
+		border: solid 1px #315096;
+		&:hover {
+			color: #315096;
+			background-color: #fff;
+		}
+	}
+	&.snslink--pinterest {
+		background-color: #ce0f19;
+		border: solid 1px #ce0f19;
+		&:hover {
+			color: #ce0f19;
+			background-color: #fff;
+		}
+	}
+	&.snslink--youtube {
+		background-color: #cd201f;
+		border: solid 1px #cd201f;
+		&:hover {
+			color: #cd201f;
+			background-color: #fff;
+		}
+	}
+	.snslink-icon {
+		font-size: 30px;
+		line-height: 1;
+	}
+}

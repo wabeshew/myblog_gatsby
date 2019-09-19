@@ -1,0 +1,213 @@
+// ************************************************************
+//  ヘッダー、フッターや全体に関わるレイアウトについて記述します ※接頭辞には、l-(エルハイフン)
+// ************************************************************
+
+// l-wrapper
+.l-wrapper {
+	background-color: #ffffff;
+}
+
+// l-contents
+.l-contents {
+	padding: 0 20px;
+	.l-contents-main {
+		margin-top: 20px;
+	}
+	.l-contents-sub {
+		margin-top: 50px;
+		>section {
+			margin-top: 100px;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+	&.l-contents--single {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+@media screen and (min-width: 720px) {
+	.l-contents {
+		&.l-contents--single {
+			width: 680px;
+			margin: 0 auto;
+		}
+	}
+}
+@media screen and (min-width: 960px) {
+	.l-contents {
+		display: flex;
+		justify-content: space-between;
+		.l-contents-main {
+			width: 100%;
+			margin-right: -310px;
+			margin-top: 50px;
+		}
+		.l-contents-sub {
+			width: 260px;
+		}
+	}
+}
+@media screen and (min-width: 1200px) {
+	.l-contents {
+		display: flex;
+		justify-content: space-between;
+		width: 1200px;
+		box-sizing: border-box;
+		margin: 0 auto;
+		.l-contents-main {
+			width: 850px;
+			margin-right: 0;
+			margin-top: 50px;
+		}
+		.l-contents-sub {
+			width: 260px;
+		}
+	}
+}
+
+// l-post
+.l-post {
+	>li {
+		margin-top: 20px;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}
+@media screen and (min-width: 600px) {
+	.l-post {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -2%;
+		margin-top: -1.3vw;
+		>li {
+			width: 48%;
+			margin-left: 2%;
+			margin-top: 1.3vw;
+			&:first-child {
+				margin-top: 1.3vw;
+			}
+			>article {
+				height: 100%;
+			}
+		}
+	}
+}
+@media screen and (min-width: 960px) {
+	.l-post {
+		margin-right: 310px;
+	}
+}
+@media screen and (min-width: 1200px) {
+	.l-post {
+		margin-right: 0;
+	}
+}
+
+// l-pagination
+.l-pagination {
+	margin-top: 70px;
+	text-align: center;
+}
+@media screen and (min-width: 960px) {
+	.l-pagination {
+		margin-right: 310px;
+	}
+}
+@media screen and (min-width: 1200px) {
+	.l-pagination {
+		margin-right: 0;
+	}
+}
+
+// l-snslink
+.l-snslink {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -2%;
+	margin-top: -2%;
+	>li {
+		width: 48%;
+		margin-left: 2%;
+		margin-top: 2%;
+	}
+}
+@media screen and (min-width: 480px) and (max-width: 959px) {
+	.l-snslink {
+		display: flex;
+		flex-wrap: nowrap;
+		margin-left: 0;
+		margin-top: 0;
+		>li {
+			margin-left: 2%;
+			margin-top: 0;
+			width: 23.5%;
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+@media screen and (min-width: 960px) {
+	.l-snslink {
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: -2%;
+		margin-top: -2%;
+		>li {
+			width: 48%;
+			margin-left: 2%;
+			margin-top: 2%;
+		}
+	}
+}
+
+// l-categories
+.l-categories {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -5px;
+	margin-top: -5px;
+	>li {
+		margin-left: 5px;
+		margin-top: 5px;
+	}
+}
+
+
+// l-popularpost
+.l-popularpost {
+	>li {
+		border-bottom: 1px solid #ccc;
+		&:first-child {
+			border-top: 1px solid #ccc;
+		}
+	}
+}
+
+// l-entry
+.l-entry {
+	margin-top: 20px;
+}
+
+// l-sub_contents
+.l-sub_contents {
+	margin-top: 90px;
+}
+
+// l-section_h1
+.l-section_h1 {
+	margin-top: 30px;
+}
+
+// l-section_h2
+.l-section_h2 {
+	margin-top: 40px;
+}
+
+// l-notfound
+.l-notfound {
+	margin-top: 50px;
+}

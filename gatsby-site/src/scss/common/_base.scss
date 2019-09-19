@@ -1,0 +1,48 @@
+// ************************************************************
+//  サイト全体のフォントに関する指定や、リンクカラーなどの指定を行います
+// ************************************************************
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+body, select, textarea, th, td, li, a, input {
+    font-family: 'Lato','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','メイリオ','meiryo','Helvetica','sans-serif';
+}
+
+body {
+    background-color: #ffffff;
+    color: #546e7a;
+    letter-spacing: 0.07em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body, select, textarea {
+    color: #546e7a;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+a {
+    cursor: pointer;
+    color: $base-link-color;
+}
+
+a:link    { color: $base-link-color; }
+a:hover   { color: $base-hover-color; text-decoration: underline; }
+a:active  { color: $base-hover-color; text-decoration: underline; }
+a:visited { color: $base-visited-color; }
+
+div, p, dl, dt, dd, ul, ol, li, a, span {
+    word-break: break-all;
+}
+
+sup {
+    vertical-align: top
+}
+
+label {
+    font-size: 16px;
+}
+
+img {
+    vertical-align: top;
+}
