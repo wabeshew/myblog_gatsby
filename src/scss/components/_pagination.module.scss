@@ -1,0 +1,93 @@
+@import '../common/_settings.scss';
+
+// pagination
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	>li {
+		display: none;
+		margin-left: 10px;
+		&:first-child {
+			display: block;
+			margin-left: 0;
+		}
+		&:last-child {
+			display: block;
+		}
+	}
+	.pagination-prev {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100px;
+		height: 40px;
+		padding: 10px 10px 10px 15px;
+		color: $base-theme-color;
+		box-sizing: border-box;
+		border: 1px solid;
+		border-radius: 40px 5px 5px 40px;
+		text-decoration: none;
+		transition: background-color 0.2s ease-in, color 0.2s ease-in;
+		&:hover {
+			background-color: $base-theme-color;
+			color: #fff;
+		}
+		&.is-hidden {
+			visibility: hidden;
+		}
+	}
+	.pagination-page {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		padding: 10px 5px;
+		color: $base-theme-color;
+		box-sizing: border-box;
+		border: 1px solid;
+		border-radius: 3px;
+		text-decoration: none;
+		transition: background-color 0.2s ease-in, color 0.2s ease-in;
+		&:hover {
+			background-color: $base-theme-color;
+			color: #fff;
+		}
+		&.is-current {
+			background-color: $base-theme-color;
+			color: #fff;
+		}
+	}
+	.pagination-next {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100px;
+		height: 40px;
+		padding: 10px 15px 10px 10px;
+		color: $base-theme-color;
+		box-sizing: border-box;
+		border: 1px solid;
+		border-radius: 5px 40px 40px 5px;
+		text-decoration: none;
+		transition: background-color 0.2s ease-in, color 0.2s ease-in;
+		&:hover {
+			background-color: $base-theme-color;
+			color: #fff;
+		}
+		&.is-hidden {
+			visibility: hidden;
+		}
+	}
+}
+@media screen and (min-width: 600px) {
+	.pagination {
+		>li {
+			display: block;
+		}
+		.pagination-page {
+			display: flex;
+		}
+	}
+}

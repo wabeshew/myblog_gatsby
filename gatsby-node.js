@@ -3,13 +3,16 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const path = require(`path`);
+const path = require(`path`)
+const createPaginatedPages = require('gatsby-paginate')
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
 
-  const postTemplate = path.resolve(`src/templates/post/index.js`);
-  const categoryTemplate = path.resolve(`src/templates/category/index.js`);
+  const postTemplate = path.resolve(`src/templates/post/index.js`)
+  const categoryTemplate = path.resolve(`src/templates/category/index.js`)
+  const topTemplate = path.resolve(`src/templates/top/index.js`)
+
 
 
   const result = await graphql(`
@@ -20,8 +23,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       ) {
         edges {
           node {
+            id
+            excerpt(pruneLength: 250)
             frontmatter {
+              date(formatString: "MMMM DD, YYYY")
               path
+              title
+              writer
+              category
             }
           }
         }
@@ -39,7 +48,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     }
-  `);
+  `)
 
   // Handle errors
   if (result.errors) {
@@ -54,7 +63,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
       }, // additional data can be passed via context
     })
-  });
+  })
+
+  createPaginatedPages({
+    edges: result.data.post.edges,
+    createPage: createPage,
+    pageTemplate: topTemplate,
+    pageLength: 2, // This is optional and defaults to 10 if not used
+    pathPrefix: '', // This is optional and defaults to an empty string if not used
+    context: {}, // This is optional and defaults to an empty object if not used
+  })
 
   // result.data.category.edges.forEach(({ node }) => {
   //   createPage({
@@ -63,5 +81,5 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   //     context: {
   //     }, // additional data can be passed via context
   //   })
-  // });
+  // })
 }

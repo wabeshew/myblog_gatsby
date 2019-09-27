@@ -3,14 +3,14 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import styles from '../../scss/components/_postlink.module.scss'
 
-const PostLink = ({ post }) => (
+const PostLink = ({ post, image }) => (
   <li>
     <article>
       <Link to={post.frontmatter.path} className={styles.post}>
         <div className={styles.postObject}>
           <div className={styles.postObjectText}>Read More</div>
           <Img
-            fluid={post.frontmatter.image.childImageSharp.fluid}
+            fluid={image.childImageSharp.fluid}
             objectFit="cover"
           />
         </div>
