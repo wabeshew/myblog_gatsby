@@ -30,6 +30,7 @@
 @media screen and (min-width: 720px) {
 	.l-contents {
 		&.l-contents--single {
+			display: block;
 			width: 680px;
 			margin: 0 auto;
 		}

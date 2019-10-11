@@ -6,7 +6,7 @@ const Nav = () => {
   return (
     <ul className={styles.nav_list}>
         <li><Link to="/" className={`${styles.nav_listLink} js-scrollNav`} activeClassName={styles.isActive}>HOME</Link></li>
-        <li><Link to="/page-2/" className={`${styles.nav_listLink} js-scrollNav`} activeClassName={styles.isActive}>ABOUT</Link></li>
+        <li><Link to="/about/" className={`${styles.nav_listLink} js-scrollNav`} activeClassName={styles.isActive}>ABOUT</Link></li>
     </ul>
   )
 }

@@ -4,32 +4,43 @@ import { Link } from "gatsby"
 import styles from "../../scss/components/_pagination.module.scss"
 
 const Pagination = ({ pageContext }) => {
-  const { index, first, last, pageCount } = pageContext
-  const prevUrl = index - 1 === 1 ? '/' : '/' + (index - 1).toString()
-  const nextUrl = '/' + (index + 1).toString()
+  const { index, first, last, pageCount, pathPrefix } = pageContext
+  const prevUrl = index - 1 === 1 ? '' : (index - 1).toString() + '/'
+  const nextUrl = (index + 1).toString() + '/'
   let navlinks = []
-  let count = pageCount < 5 ? pageCount : 5
-  let start = index - 1 > pageCount - 5 && pageCount - 5 > 0 ? pageCount - 5 : index - 1
+  let pageRange = 2
+  let showRange = 5
+  let start = 1
+  let end = pageCount
+
+  if(pageCount > showRange) {
+    start = Math.max(index - pageRange, 1)
+    end = Math.min(index + pageRange, pageCount)
+    if(Math.min(index + pageRange, pageCount) < 5) {
+      end = 5
+    } else if(pageCount - pageRange < index) {
+      start = pageCount - pageRange * 2
+    }
+  }
+
   return (
     <ul className={styles.pagination}>
       <li>
-        <Link to={prevUrl} className={first ? `${styles.paginationPrev} ${styles.isHidden}` : `${styles.paginationPrev}`}>Next</Link>
+        <Link to={`${pathPrefix}/${prevUrl}`} className={first ? `${styles.paginationPrev} ${styles.isHidden}` : `${styles.paginationPrev}`}>Next</Link>
       </li>
       {(() => {
-        for (let i = 0 + start; i < count + start; i++) {
-          console.log(count)
-          console.log(start)
-          let linkindex = (i + 1).toString()
+        for (let i = start; i <= end; i++) {
+          let linkindex = i.toString()
           navlinks.push(
             <li key={i}>
-              <Link to={linkindex === '1' ? '/' : '/' + linkindex} className={styles.paginationPage} activeClassName={styles.isCurrent}>{linkindex}</Link>
+              <Link to={linkindex === '1' ? `${pathPrefix}/` : `${pathPrefix}/${linkindex}/`} className={styles.paginationPage} activeClassName={styles.isCurrent}>{linkindex}</Link>
             </li>
           )
         }
         return navlinks
       })()}
       <li>
-        <Link to={nextUrl} className={last ? `${styles.paginationNext} ${styles.isHidden}` : `${styles.paginationNext}`}>Prev</Link>
+        <Link to={`${pathPrefix}/${nextUrl}`} className={last ? `${styles.paginationNext} ${styles.isHidden}` : `${styles.paginationNext}`}>Prev</Link>
       </li>
     </ul>
   )

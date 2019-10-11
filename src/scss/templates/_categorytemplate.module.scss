@@ -1,0 +1,18 @@
+@charset "utf-8";
+@import '../common/_settings.scss';
+@import '../common/_reset.scss';
+@import '../common/_base.scss';
+@import '../common/_layout.scss';
+
+.post_section {
+	.post_section-header {
+		font-size: 22px;
+		padding-left: 8px;
+		border-left: 5px solid $base-theme-color;
+		line-height: 1;
+		font-weight: normal;
+	}
+	.post_section-body {
+		margin-top: 30px;
+	}
+}

@@ -44,13 +44,26 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
+        excerpt_separator: `<!-- end -->`,
         plugins: [
           {
             resolve: `gatsby-remark-external-links`,
             options: {
               rel: "noopener noreferrer",
             }
-          }
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 640,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              wrapperStyle: 'box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); border-radius: 3px;'
+            },
+          },
         ]
       }
     },

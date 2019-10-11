@@ -31,18 +31,33 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
               title
               writer
               category
+              slug
             }
           }
         }
       },
-      category: allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      category: allMarkdownRemark(sort: {order: DESC, fields: frontmatter___category}) {
+        group(field: frontmatter___category) {
+          edges {
+            node {
+              id
+              excerpt(pruneLength: 250)
+              frontmatter {
+                date(formatString: "MMMM DD, YYYY")
+                path
+                title
+                writer
+                category
+                slug
+              }
+            }
+          }
+        }
         edges {
           node {
             frontmatter {
               category
+              slug
             }
           }
         }
@@ -65,21 +80,28 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     })
   })
 
+  result.data.category.group.forEach(( edges ) => {
+    createPaginatedPages({
+      edges: edges['edges'],
+      createPage: createPage,
+      pageTemplate: categoryTemplate,
+      pageLength: 2, // This is optional and defaults to 10 if not used
+      pathPrefix: `/category/${edges['edges'][0].node.frontmatter.slug}`,
+      buildPath: (index, pathPrefix) => {
+        return index > 1 ? `${pathPrefix}/${index}/` : `${pathPrefix}/`
+      },
+      context: {
+        category: edges['edges'][0].node.frontmatter.category
+      }, // This is optional and defaults to an empty object if not used
+    })
+  })
+
   createPaginatedPages({
     edges: result.data.post.edges,
     createPage: createPage,
     pageTemplate: topTemplate,
-    pageLength: 2, // This is optional and defaults to 10 if not used
+    pageLength: 4, // This is optional and defaults to 10 if not used
     pathPrefix: '', // This is optional and defaults to an empty string if not used
     context: {}, // This is optional and defaults to an empty object if not used
   })
-
-  // result.data.category.edges.forEach(({ node }) => {
-  //   createPage({
-  //     path: `/category/${node.frontmatter.category}`,
-  //     component: categoryTemplate,
-  //     context: {
-  //     }, // additional data can be passed via context
-  //   })
-  // })
 }

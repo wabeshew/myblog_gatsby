@@ -1,9 +1,9 @@
 ---
-path: "/posts/2019-01-07"
-title: "cccccc"
-date: "2019-01-07"
+path: "/posts/2019-01-08"
+title: "88888"
+date: "2019-01-08"
 writer: "kota"
-mainimg: "./img/thumbnail.jpg"
+mainimg: ./img/thumbnail.jpg
 category: "テスト1"
 slug: "test01"
 ---

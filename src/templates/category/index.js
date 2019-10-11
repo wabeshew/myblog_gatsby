@@ -1,30 +1,42 @@
 import React from "react"
 import { graphql } from "gatsby"
-import styles from '../../scss/templates/_posttemplate.module.scss'
 
 import Layout from "../../components/Layout"
 import SEO from "../../components/SEO"
-import Writer from "../../components/Writer"
-import Label from "../../components/Label"
+import PostLink from "../../components/PostLink"
+import SnsLink from "../../components/SnsLink"
+import SubContents from "../../components/SubContents"
+import CategoryList from "../../components/CategoryList"
+import Pagination from "../../components/Pagination"
 
-const CategoryTemplate = ({ data }) => {
-  const { markdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
+import styles from '../../scss/templates/_categorytemplate.module.scss'
+
+const CategoryPage = ({ data, pageContext }) => {
+  const Posts = pageContext.group
+    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
+    .map((edge, index) => {
+      let mainimg = data.post.edges.filter(edge => edge.node.id === pageContext.group[index].node.id)[0].node.frontmatter.mainimg
+      return <PostLink key={edge.node.id} post={edge.node} mainimg={mainimg}/>
+    })
+  const categorylist = [...new Map(data.category.edges.map((v) => [v.node.frontmatter.slug, v])).values()];
   return (
     <Layout>
-      <SEO title="top" />
+      <SEO title={`${pageContext.category}`} />
       <div className={styles.lContents}>
         <main className={styles.lContentsMain}>
           <section>
-            <div class="post_section">
-              <h1 class="post_section-header"></h1>
-              <div class="post_section-body">
-                <ul className={styles.lPost}>
-                  {Posts}
-                </ul>
-              </div>
+            <div className={styles.post_section}>
+                <h1 className={styles.post_sectionHeader}>{`${pageContext.category}`}</h1>
+                <div className={styles.post_sectionBody}>
+                  <ul className={styles.lPost}>
+                    {Posts}
+                  </ul>
+                </div>
             </div>
           </section>
+          <div className={styles.lPagination}>
+            <Pagination pageContext={pageContext} />
+          </div>
         </main>
         <aside className={styles.lContentsSub}>
           <SubContents title="Follow me">
@@ -39,18 +51,43 @@ const CategoryTemplate = ({ data }) => {
   )
 }
 
-export default CategoryTemplate
+export default CategoryPage
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        title
-        writer
-        category
+  query($category: String!) {
+    post: allMarkdownRemark(filter: {frontmatter: {category: {eq: $category}}}, sort: {order: DESC, fields: frontmatter___date}) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 250)
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            path
+            title
+            writer
+            mainimg {
+              childImageSharp {
+                fluid(maxWidth: 416) {
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
+                }
+              }
+            }
+            category
+            slug
+          }
+        }
+      }
+    }
+    category: allMarkdownRemark(sort: {order: DESC, fields: frontmatter___date}) {
+      edges {
+        node {
+          id
+          excerpt(pruneLength: 250)
+          frontmatter {
+            category
+            slug
+          }
+        }
       }
     }
   }

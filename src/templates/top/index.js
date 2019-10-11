@@ -9,17 +9,16 @@ import SubContents from "../../components/SubContents"
 import CategoryList from "../../components/CategoryList"
 import Pagination from "../../components/Pagination"
 
-import styles from '../../scss/page/_top.module.scss'
+import styles from '../../scss/templates/_toptemplate.module.scss'
 
 const IndexPage = ({ data, pageContext }) => {
   const Posts = pageContext.group
     .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
     .map((edge, index) => {
-      let image = data.allMarkdownRemark.edges.filter(edge => edge.node.id === pageContext.group[index].node.id)[0].node.frontmatter.image
-      return <PostLink key={edge.node.id} post={edge.node} image={image}/>
+      let mainimg = data.allMarkdownRemark.edges.filter(edge => edge.node.id === pageContext.group[index].node.id)[0].node.frontmatter.mainimg
+      return <PostLink key={edge.node.id} post={edge.node} mainimg={mainimg}/>
     })
-  let categorylist = [...new Set(data.allMarkdownRemark.edges
-    .map(edge => edge.node.frontmatter.category))]
+  const categorylist = [...new Map(data.allMarkdownRemark.edges.map((v) => [v.node.frontmatter.slug, v])).values()];
   return (
     <Layout>
       <SEO title="top" />
@@ -55,11 +54,7 @@ export const pageQuery = graphql`
           id
           excerpt(pruneLength: 250)
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            path
-            title
-            writer
-            image {
+            mainimg {
               childImageSharp {
                 fluid(maxWidth: 416) {
                   ...GatsbyImageSharpFluid_withWebp_noBase64
@@ -67,6 +62,7 @@ export const pageQuery = graphql`
               }
             }
             category
+            slug
           }
         }
       }

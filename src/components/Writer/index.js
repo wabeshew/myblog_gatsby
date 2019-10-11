@@ -6,7 +6,7 @@ import constants from './constants.js'
 const Writer = ({ writer }) => {
   return (
     <div className={styles.writer}>
-        <div className={styles.writerObject}><img src="" width="100" height="100" className={styles.writerObjectImg} alt=""/></div>
+        <div className={styles.writerObject}><img src={constants[writer].img} width="100" height="100" className={styles.writerObjectImg} alt={writer}/></div>
         <div className={styles.writerBody}>
             <div className={styles.writerBodyTitle}>著者</div>
             <div className={styles.writerBodyName}>{constants[writer].name}</div>

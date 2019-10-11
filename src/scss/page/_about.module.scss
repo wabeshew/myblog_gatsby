@@ -1,0 +1,38 @@
+@charset "utf-8";
+@import '../common/_settings.scss';
+@import '../common/_reset.scss';
+@import '../common/_base.scss';
+@import '../common/_layout.scss';
+
+.section_h1 {
+	.section_h1-header {
+		>h1 {
+			font-size: 28px;
+			line-height: 1.8;
+			font-weight: normal;
+		}
+	}
+	.section_h1-body {
+		margin-top: 40px;
+	}
+}
+
+.section_h2 {
+	.section_h2-header {
+		>h2 {
+			font-size: 22px;
+			line-height: 1.8;
+			font-weight: normal;
+		}
+	}
+	.section_h2-body {
+		margin-top: 20px;
+		.section_h2-body-text {
+			margin-top: 20px;
+			line-height: 1.8;
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+}
